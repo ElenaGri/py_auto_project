@@ -1,6 +1,6 @@
 import pytest
 from .pages.main_page import MainPage
-from .pages.main_page import LoginPage
+from .pages.product_page import ProductPage
 
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
@@ -16,6 +16,7 @@ def test_guest_can_add_product_to_basket(browser, link):
     #ваша реализация теста
     page = MainPage(browser, link)
     page.open()
-    page.add_good_to_basket()
-    page.solve_quiz_and_get_code()
-    page.check_good()
+    product_page = ProductPage(browser, browser.current_url)
+    product_page.add_good_to_basket()
+    product_page.solve_quiz_and_get_code()
+    product_page.check_good()
